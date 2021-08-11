@@ -1,0 +1,71 @@
+import React, { useState } from 'react';
+import { Alert,Modal,StyleSheet,Text,Pressable,View } from 'react-native';
+
+const App =() => {
+  const[model,setmodel]=useState(false);
+  return(
+   
+<View style={styles.centercont}>
+    <Modal 
+     animationType="slide"
+    visible={model}
+    transperent={true}
+    onRequestClose={()=>{
+      Alert.alert("Model Has Been Closed")
+      setmodel(false)
+    }}>
+    
+      <View style={styles.centercont}>
+        <View style={styles.modelview}>
+          <Text style={{marginBottom:15,alignSelf:'center'}}>Hello World</Text>
+          <Pressable style={[styles.buttonClose,styles.button]} onPress={()=>setmodel(false)}>
+            <Text style={{color:'white',fontWeight:'bold'}}> Close Model</Text>
+          </Pressable>
+        </View>
+      </View>
+    </Modal>
+
+    <Pressable style={[styles.buttonOpen,styles.button]} onPress={()=>setmodel(true)}>
+      <Text >Show Model</Text>
+    </Pressable>
+</View>
+   );
+}
+
+const styles=StyleSheet.create({
+  centercont:{
+    flex:1,
+    alignItems:'center',
+    marginTop:150,
+    justifyContent:'center',
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  button:{
+    borderRadius:20,
+    padding:10
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+    
+  },
+  modelview:{
+    margin:20,
+    backgroundColor:'white',
+    borderRadius:20,
+    padding:25,
+    borderWidth:1,
+    alignItems:'center',
+    shadowColor:'#000',
+    shadowOffset:{
+      width:0,
+      height:5,
+    },
+    shadowOpacity:0.5,
+    shadowRadius:4,
+    elevation:5,
+  },
+
+})
+export default App;

@@ -1,0 +1,30 @@
+import React from 'react'
+import { SafeAreaView, View,Text,Button ,StyleSheet} from 'react-native'
+
+import  firebase  from '@react-native-firebase/app'
+import analytics from "@react-native-firebase/analytics"
+
+const App=()=>{
+  return(
+    <SafeAreaView>
+    <View style={styles.container}>
+      <Text>Hello Android</Text>
+      <Button title="Add Tracking Event" 
+      onPress={()=>analytics().logEvent('General_Event',{
+          item:'It Worked'
+        
+      },console.log("It Works..!!")
+      )}
+      />
+    </View>
+    </SafeAreaView>
+  )
+}
+export default App;
+const styles=StyleSheet.create({
+  container:{
+    marginTop:150,
+    alignItems:'center',
+
+  },
+})

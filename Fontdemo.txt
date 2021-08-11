@@ -1,0 +1,18 @@
+import React from 'react'
+import { StyleSheet,SafeAreaView,View,Text } from 'react-native'
+
+const App=()=>{
+    return(
+<SafeAreaView>
+    <View style={{marginTop:150,alignItems:'center'}}>
+        
+        <Text style={{fontSize:30}}>First Simple Font {'\n'}{'\n'}</Text>
+        <Text style={{fontFamily:'BigShouldersStencilDisplay-Bold',fontSize:30}}> BigShoulder Font {'\n'}{'\n'}</Text>
+        <Text style={{fontFamily:'Jomhuria-Regular',fontSize:50}}>Jomhuria Font {'\n'}{'\n'}</Text>
+        <Text style={{fontFamily:'Yellowtail-Regular',fontSize:30}}>Yellowtail Font</Text>
+
+    </View>
+</SafeAreaView>
+    );
+}
+export default App;

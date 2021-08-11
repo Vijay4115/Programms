@@ -1,0 +1,209 @@
+
+
+import React, { useState } from 'react'
+import { Alert, SafeAreaView,View,Text,StyleSheet,TextInput,TouchableOpacity, ScrollView } from 'react-native'
+import {
+  responsiveScreenWidth,
+  responsiveScreenFontSize,
+  
+  responsiveScreenHeight
+} from "react-native-responsive-dimensions";
+
+const App=()=>{
+  const[invalidname,setiname]=useState("")
+  const[invalidnumber,setinumber]=useState("")
+  const[invalidemail,setiemail]=useState("")
+  const[invalidpass,setipass]=useState("")
+  const[invalidconfirmpass,seticpass]=useState("")
+
+  const[name,setName]=useState('');
+  const[email,setEmail]=useState('');
+  const[number,setNumber]=useState('');
+  const[pass,setPass]=useState('');
+  const[confirmpass,setConfirmpass]=useState('');
+
+  checkname=(e)=>{
+      let reg = /^[a-zA-Z\s]+$/
+     if(reg.test(e)){
+      
+          setName(e)
+          setiname("")
+     }else{
+       setiname("Please Enter Valid Name ")
+     }
+   }
+   checknumber=(n)=>{
+    let regs = /^[0-9]+$/
+    if(regs.test(n)){
+      setNumber(n)
+      setinumber("")
+    }
+    else{
+      setinumber("Please Enter Valid Number")
+    }
+    
+  }
+    checkemail=(mail)=>{
+      let reg=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+      
+      if(reg.test(mail))
+      {
+        setEmail(mail)
+        setiemail("")
+      }
+      else{
+        setiemail("Please Enter Valid Email")
+      }
+    }
+
+checkpass=(pss)=>{
+  let reg=/^[0-9a-zA-Z]+$/
+  if(reg.test(pss))
+  {
+    setPass(pss)
+    setipass("")
+  }
+  else{
+    setipass("Please Enter Valid Password")
+    
+  }
+}
+
+checkConfirmpassword=(cnpss)=>{
+ if(pass.match(cnpss))
+ {
+   setConfirmpass(cnpss)
+   seticpass("")
+
+ }
+ else
+ {
+   seticpass("Password Doesn't Match")
+ }
+}
+   
+
+_onCheck=()=>{
+  
+  ename=name.trim(' ');
+  var format = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+$/;
+
+  if(format.test(pass)){
+    setipass("Password Must be Alphanumeric")
+    return false
+  }
+   if(name.length < 1 || ename.length <1 ){
+     setiname("Please Enter Name")
+      return false;
+      }
+      if(number.length <3 || number.length > 10){
+        setinumber("Please Enter Valid Number ")
+        return false
+      }
+      if(email.length < 1){
+        setiemail("Please Enter Email Address")
+        return false
+      }
+      if(pass.length <3 || pass.length > 8){
+        setipass("Please Enter  between 3 to 8 Char")
+        return false
+      }
+      if(pass.length != confirmpass.length)
+      {
+        seticpass("Password Dosn't Match")
+        return false;
+      }
+     
+   
+  return true;
+}
+  _onSubmit=()=>{
+  
+    if(!_onCheck()){ 
+       }
+    else  {alert(name + " "+number + " "+ email+ " "+pass)}
+   }
+  return(
+   <ScrollView style={{backgroundColor:'#ffe4e1',flex:1}}>
+      <SafeAreaView >
+        <View style={styles.container}>
+         <Text style={styles.textheading}>Form Validation </Text>
+
+      <Text>{'\n'}{'\n'}{'\n'}</Text>
+<View style={{flexDirection:'row'}}>
+  <Text style={{fontWeight:'bold',marginTop:26,paddingRight:20,marginRight:10,marginStart:-50}}>Name:</Text>
+<TextInput  placeholder="Enter Name" placeholderTextColor='#a9a9a9' style={styles.input}  onChangeText={(e)=>{this.checkname(e)}}  />
+</View>
+<Text style={{color:'red',alignSelf:'center',paddingTop:1}}>{invalidname}{'\n'}</Text>
+
+<View style={{flexDirection:'row'}}>
+  <Text style={{fontWeight:'bold',marginTop:26,paddingRight:20,marginRight:8,marginStart:-60}}>Number:</Text>
+<TextInput placeholder="Mininum 3 Letters" keyboardType={"numeric"} onChangeText={(n)=>{this.checknumber(n)}} placeholderTextColor='#a9a9a9' style={styles.input} />
+</View>
+<Text style={{color:'red',alignSelf:'center',paddingTop:1}}>{invalidnumber}{'\n'}</Text>
+
+<View style={{flexDirection:'row'}}>
+  <Text style={{fontWeight:'bold',marginTop:26,paddingRight:20,marginRight:8,marginStart:-45}}>Email:</Text>
+<TextInput  placeholder="Enter Email" keyboardType='email-address' onChangeText={(mail)=>{checkemail(mail)}}  placeholderTextColor='#a9a9a9' style={styles.input}/>
+</View>
+<Text style={{color:'red',alignSelf:'center',paddingTop:1}}>{invalidemail}{'\n'}</Text>
+<View style={{flexDirection:'row'}}>
+  <Text style={{fontWeight:'bold',marginTop:26,paddingRight:15,marginRight:1,marginStart:-65}}>Password:</Text>
+<TextInput placeholder="Enter Password"  secureTextEntry onChangeText={(pass)=>{checkpass(pass)}} placeholderTextColor='#a9a9a9' style={styles.input}/>
+</View>
+<Text style={{color:'red',alignSelf:'center',paddingTop:1}}>{invalidpass}{'\n'}</Text>
+<View style={{flexDirection:'row'}}>
+  <Text style={{fontWeight:'bold',marginTop:26,paddingRight:15,marginRight:5,marginStart:-60}}>Confirm:</Text>
+<TextInput placeholder="Enter Confirm Password" secureTextEntry onChangeText={(cnpss)=>{checkConfirmpassword(cnpss)}}  placeholderTextColor='#a9a9a9' style={styles.input}/>
+</View>
+<Text style={{color:'red',alignSelf:'center',paddingTop:1}}>{invalidconfirmpass}{'\n'}</Text>
+<Text>{'\n'}</Text>
+<TouchableOpacity style={styles.touchable} onPress={()=>this._onSubmit()}>
+  <Text style={styles.touchtext}>SUBMIT</Text>
+</TouchableOpacity>
+
+        </View>
+      </SafeAreaView>
+      </ScrollView>
+
+  )
+}
+export default App;
+
+const styles=StyleSheet.create({
+
+  container:{
+    alignItems:'center',
+    justifyContent:'center',
+    marginTop:1,
+  },
+  touchtext:{
+    color:'white',
+    fontWeight:'bold',
+    alignSelf:'center',
+    padding:6,
+    marginTop:6,
+  },
+  textheading:{
+    fontSize:responsiveScreenFontSize(3),
+    color:'blue',
+    fontWeight:'bold'
+  },
+  touchable:{
+    marginTop:75,
+    backgroundColor:'#1e90ff',
+    width:responsiveScreenWidth(40),
+    height:responsiveScreenHeight(5),
+    color:'white',
+    borderRadius:20,
+
+  },
+  input:{
+    marginTop:20,
+     width:responsiveScreenWidth(60),
+    borderRadius:10,
+    borderWidth:1,
+    padding:5,
+  paddingLeft:10,
+  }
+})

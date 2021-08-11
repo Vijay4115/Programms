@@ -1,0 +1,175 @@
+import React from 'react'
+import { Component } from 'react';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  Button
+}
+  from 'react-native';
+  import  AsyncStorage  from '@react-native-async-storage/async-storage'
+  import { Dropdown } from 'react-native-material-dropdown-v2'
+
+  export default class App extends Component{
+
+
+    constructor(props){
+        super(props);
+      
+        this.state={
+          fname:'',
+          lname:'',
+          city:'',
+        }
+      }
+    render() {
+        let cities = [
+            {
+              label: 'Surat',
+              value: 'Surat',
+            }, {
+              label: 'Vadodara',
+              value: 'Vadodara',
+            }, {
+              label: 'Valsad',
+              value: 'Valsad',
+            }, {
+              label: 'Bharuch',
+              value: 'Bharuch',
+            }
+          ];
+      
+          _onSubmit = () =>{
+            
+            let data = {
+              fname:this.state.fname,
+              lname:this.state.lname,
+              city:this.state.city,
+            }
+            
+            _storeData(data);
+          }
+      
+          _storeData = async (data) => {
+            try {
+              await AsyncStorage.setItem('Data',JSON.stringify(data)
+              );
+              console.log("Save ok");
+            } catch (error) {
+              // Error saving data
+              console.log(error);
+            }
+          };
+      
+          _retrieveData = async () => {
+            try {
+              const value = await AsyncStorage.getItem('Data');
+              if (value !== null) {
+                // We have data!!
+                console.log(value);
+              }
+              else{
+                console.log("No Data");
+              }
+            } catch (error) {
+              // Error retrieving data
+            console.log(error);
+            }
+        }
+
+        return (
+            <SafeAreaView>
+            <View>
+              <Text style={styles.txtheading}> AsyncStorage DataBase </Text>
+            </View>
+            <View style={styles.txtinputview}>
+              <TextInput placeholder="Enter First Name" placeholderTextColor="darkgrey" style={styles.txtinput} 
+              onChangeText={(nm)=> this.setState({fname:nm})}
+              />
+              <TextInput placeholder="Enter Last Name" placeholderTextColor="darkgrey" style={styles.txtinput} 
+              onChangeText={(nm)=> this.setState({lname:nm})}
+              />
+    
+              <View style={styles.dropstyle}>
+                <Dropdown data={cities} label='Select City' onChangeText={(value)=>this.setState({city:value})} useNativeDriver={true} />
+              </View>
+    
+              <TouchableOpacity style={styles.touch} onPress={()=>_onSubmit()}>
+                <Text style={styles.touchtext}>
+                  Set Data
+                </Text>
+              </TouchableOpacity>
+    
+              <TouchableOpacity style={styles.touch2} onPress={()=>_retrieveData()}>
+                <Text style={styles.touchtext}>
+                View Data
+                </Text>
+              </TouchableOpacity>
+              
+
+
+         
+          
+          
+           
+            </View>
+    
+          </SafeAreaView>
+        )
+    }
+  }
+
+  const styles = StyleSheet.create({
+
+    txtheading: {
+      marginTop: 20,
+      alignSelf: 'center',
+      fontSize: 20,
+      fontWeight: '600',
+  
+    },
+    dropstyle:{
+      width:125,
+      marginTop:50,
+  
+    },
+    txtinputview: {
+      marginTop: 30,
+      alignItems: 'center'
+    },
+    txtinput: {
+      borderWidth: 1,
+      width: 250,
+      height: 40,
+      paddingLeft: 20,
+      borderRadius: 20,
+      fontSize: 15,
+      marginTop: 50
+    },
+    touch:{
+      borderWidth:1,
+      width:200,
+      height:40,
+      marginTop:150,
+      backgroundColor:'#2C394B',
+      borderRadius:25
+    },
+    touch2:{
+      borderWidth:1,
+      width:200,
+      height:40,
+      marginTop:50,
+      backgroundColor:'#2C394B',
+      borderRadius:25
+    },
+    touchtext:{
+      color:'white',
+      fontSize:20,
+      alignSelf:'center',
+      padding:5,
+      fontWeight:'600'
+    },
+  })

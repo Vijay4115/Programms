@@ -1,0 +1,53 @@
+import React, { Component } from "react"
+import {SafeAreaView,Text,View,ScrollView,Image} from "react-native"
+
+export default class Scrolldemo extends Component
+{
+  render(){
+    return(
+
+      <SafeAreaView style={{alignSelf:'center'}}>
+       
+          <ScrollView>
+          <Text>This is ScrollView</Text>
+          <Text>{"\n\n\n"}</Text>
+          <Image source={{uri:"/Users/mac/Documents/projects/scrollviewDemo/DAE232D0-51EF-4880-80D1-A74048BC8B94_1_105_c.jpeg",height:100,width:100}}/> 
+
+          <Text>{"\n\n\n"}</Text>
+          <Image source={{uri:"/Users/mac/Documents/projects/scrollviewDemo/DAE232D0-51EF-4880-80D1-A74048BC8B94_1_105_c.jpeg",height:100,width:100}}/> 
+          <Text>{"\n\n\n"}</Text>
+          <Image source={{uri:"/Users/mac/Documents/projects/scrollviewDemo/DAE232D0-51EF-4880-80D1-A74048BC8B94_1_105_c.jpeg",height:100,width:100}}/> 
+          <Text>{"\n\n\n"}</Text>
+          <Image source={{uri:"/Users/mac/Documents/projects/scrollviewDemo/DAE232D0-51EF-4880-80D1-A74048BC8B94_1_105_c.jpeg",height:100,width:100}}/> 
+          <Text>{"\n\n\n"}</Text>
+          <Image source={{uri:"/Users/mac/Documents/projects/scrollviewDemo/DAE232D0-51EF-4880-80D1-A74048BC8B94_1_105_c.jpeg",height:100,width:100}}/> 
+          <Text>{"\n\n\n"}</Text>
+          <Image source={{uri:"/Users/mac/Documents/projects/scrollviewDemo/DAE232D0-51EF-4880-80D1-A74048BC8B94_1_105_c.jpeg",height:100,width:100}}/> 
+          <Text>{"\n\n\n"}</Text>
+          <Image source={{uri:"/Users/mac/Documents/projects/scrollviewDemo/DAE232D0-51EF-4880-80D1-A74048BC8B94_1_105_c.jpeg",height:100,width:100}}/> 
+          <Text>{"\n\n\n"}</Text>
+          <Image source={{uri:"/Users/mac/Documents/projects/scrollviewDemo/DAE232D0-51EF-4880-80D1-A74048BC8B94_1_105_c.jpeg",height:100,width:100}}/> 
+          <Text>{"\n\n\n"}</Text>
+          <Image source={{uri:"/Users/mac/Documents/projects/scrollviewDemo/DAE232D0-51EF-4880-80D1-A74048BC8B94_1_105_c.jpeg",height:100,width:100}}/> 
+          <Text>{"\n\n\n"}</Text>
+          <Image source={{uri:"/Users/mac/Documents/projects/scrollviewDemo/DAE232D0-51EF-4880-80D1-A74048BC8B94_1_105_c.jpeg",height:100,width:100}}/> 
+          <Text>{"\n\n\n"}</Text>
+          <Image source={{uri:"/Users/mac/Documents/projects/scrollviewDemo/DAE232D0-51EF-4880-80D1-A74048BC8B94_1_105_c.jpeg",height:100,width:100}}/> 
+          <Text>{"\n\n\n"}</Text>
+          <Image source={{uri:"/Users/mac/Documents/projects/scrollviewDemo/DAE232D0-51EF-4880-80D1-A74048BC8B94_1_105_c.jpeg",height:100,width:100}}/> 
+          <Text>{"\n\n\n"}</Text>
+          <Image source={{uri:"/Users/mac/Documents/projects/scrollviewDemo/DAE232D0-51EF-4880-80D1-A74048BC8B94_1_105_c.jpeg",height:100,width:100}}/> 
+          <Text>{"\n\n\n"}</Text>
+          <Image source={{uri:"/Users/mac/Documents/projects/scrollviewDemo/DAE232D0-51EF-4880-80D1-A74048BC8B94_1_105_c.jpeg",height:100,width:100}}/> 
+          <Text>{"\n\n\n"}</Text>
+          <Image source={{uri:"/Users/mac/Documents/projects/scrollviewDemo/DAE232D0-51EF-4880-80D1-A74048BC8B94_1_105_c.jpeg",height:100,width:100}}/> 
+          <Text>{"\n\n\n"}</Text>
+          <Image source={{uri:"/Users/mac/Documents/projects/scrollviewDemo/DAE232D0-51EF-4880-80D1-A74048BC8B94_1_105_c.jpeg",height:100,width:100}}/> 
+          
+
+          </ScrollView>
+       
+      </SafeAreaView>
+    );
+  }
+}

@@ -1,0 +1,27 @@
+import React, { Component } from "react"
+import {SafeAreaView,View,Text,Slider} from "react-native"
+
+export default class sliderdemo extends Component
+{
+  state={
+    slidervalue:0
+  }
+  render(){
+
+    return(
+      <SafeAreaView>
+        <View>
+          <Slider
+          minimumValue={0}
+          maximumValue={100}
+          minimumTrackTintColor="#307ecc"
+          maximumTrackTintColor="#000000"
+          value={this.state.slidervalue}
+          onValueChange={(slidervalue)=>this.setState({slidervalue})}
+          />
+          <Text>Slider Value = {this.state.slidervalue}</Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
+}

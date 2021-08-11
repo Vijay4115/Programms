@@ -1,0 +1,149 @@
+import React, { useState } from 'react'
+import { StyleSheet,SafeAreaView,View,Text,TouchableHighlight,Button} from 'react-native'
+import Dialog,{DialogButton,DialogContent,DialogTitle,DialogFooter,SlideAnimation,ScaleAnimation} from 'react-native-popup-dialog' 
+
+const App=()=>{
+
+  const[defaultanimationdialogue,setDefaultanimationdialogue]=useState(false);
+  const[slideanimationdialogue,setSlideanimationdialogue]=useState(false);
+  const[scaleanimationdialogue,setScaleanimationdialogue]=useState(false);
+
+
+  return(
+    <SafeAreaView style={{flex:1}}>
+      <View style={styles.container}>
+        <Text>DialogueBox Demo {'\n'}{'\n'}</Text>
+        <TouchableHighlight style={styles.touchbtn}
+        onPress={()=>setDefaultanimationdialogue(true)}>
+          <Text style={styles.touchtext}>Default Animation Dialogue</Text>
+        </TouchableHighlight>
+<Text>{'\n'}{'\n'}</Text>
+        <TouchableHighlight style={styles.touchbtn}
+        onPress={()=>setScaleanimationdialogue(true)}>
+          <Text style={styles.touchtext}>Scale Animation Dialogue</Text>
+        </TouchableHighlight>
+        <Text>{'\n'}{'\n'}</Text>
+        <TouchableHighlight style={styles.touchbtn}
+        onPress={()=>setSlideanimationdialogue(true)}>
+          <Text style={styles.touchtext}>Slide Animation Dialogue</Text>
+        </TouchableHighlight>
+        
+        <Dialog
+        onDismiss={()=>{setDefaultanimationdialogue(false)}}
+        width={0.9}
+        visible={defaultanimationdialogue}
+        rounded  
+        actionsBordered
+        dialogTitle={
+          <DialogTitle
+          title="Default Animation Dialogue Simple"
+          style={{
+            backgroundColor:'#F7F7F8',
+            fontWeight:'bold',
+          }}
+          hasTitleBar={false}
+          align="center"
+          />
+        }
+        footer={
+          <DialogFooter>
+          <DialogButton
+          text="CANCEL"
+          bordered
+          onPress={()=>{setDefaultanimationdialogue(false)}}
+          key="button-1"
+          />
+          <DialogButton
+          text="OK"
+          bordered
+          onPress={()=>{setDefaultanimationdialogue(false)}}
+          key="button-2"
+          />
+          </DialogFooter>
+        }>
+          <DialogContent
+          style={{backgroundColor:'#F7F7F8'}}>
+          <Text>Here Is Simple Dialogue Animation</Text>
+          </DialogContent>
+        </Dialog>
+
+      <Dialog
+      onTouchOutside={()=>{setScaleanimationdialogue(false)}}
+      width={0.9}
+        visible={scaleanimationdialogue}
+        dialogAnimation={new ScaleAnimation()}
+        onHardwareBackPress={()=>{setScaleanimationdialogue(false)
+        console.log("Hardware Back Pressed")
+        return true}}
+
+        dialogTitle={
+          <DialogTitle 
+          title="Scale Animation DialogBox"
+          hasTitleBar={false}
+          />
+        }
+        actions={[
+          <DialogButton
+          title="DISMISS"
+          onPress={()=>{scaleanimationdialogue(false)}}
+          key="button-1"
+          />
+
+        ]}>
+          <DialogContent>
+            <View>
+            <Text>Example Of Scale animation Dialogue Box ..{'\n'}Close Using Back button</Text>
+            <Button 
+            title="Close"
+            onPress={()=>{setScaleanimationdialogue(false)}}
+            key="button-1"
+            
+            />
+            </View>
+          </DialogContent>
+
+      </Dialog>
+
+      <Dialog
+      onDismiss={()=>{setSlideanimationdialogue(false)}}
+      onTouchOutside={()=>{setSlideanimationdialogue(false)}}
+      width={0.9}
+      visible={slideanimationdialogue}
+
+      dialogAnimation={new SlideAnimation()}
+      dialogTitle={
+        <DialogTitle
+          title="Slide Animation Dialogue Box"
+        />
+      }
+      >
+<DialogContent>
+  <View>
+    <Text>Slide Animation DialogBox ...! touch outside to cancel Dialogue Box</Text>
+  </View>
+</DialogContent>
+      </Dialog>
+ </View>
+    </SafeAreaView>
+  )
+}
+export default App;
+const styles=StyleSheet.create({
+  container:{
+    alignItems:'center',
+    justifyContent:'center',
+    marginTop:150,
+  },
+  touchbtn:{
+    backgroundColor:'powderblue',
+    width:280,
+    height:30,
+    shadowOpacity:1,
+    borderRadius:50,
+  },
+  touchtext:{
+    alignSelf:'center',
+    padding:5,
+    fontWeight:'bold',
+  },
+})

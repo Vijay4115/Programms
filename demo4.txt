@@ -1,0 +1,17 @@
+import React, { Component } from "react"
+import {SafeAreaView, View,Text,Image} from "react-native"
+
+export default class Imageview extends Component
+{
+  render(){
+
+    return(
+      <SafeAreaView>
+      <View>
+        <Text style={{alignSelf:'center',paddingTop:150}}>This is ImageViewDemo</Text>
+        <Image source={{uri:"/Users/mac/Documents/projects/demo4/DAE232D0-51EF-4880-80D1-A74048BC8B94_1_105_c.jpeg",height:300,widht:300}} ></Image>
+      </View>
+      </SafeAreaView>
+    );
+  }
+}

@@ -1,0 +1,35 @@
+import React, { Component } from "react";
+import {SafeAreaView,View,StyleSheet, ActivityIndicator} from "react-native"
+
+export default class activitydemo extends Component
+{
+  state={
+    animating:true
+  }
+setCloseActivity=()=>setTimeout(()=>this.setState({animating:false}) ,600)
+didMount=()=>this.setCloseActivity();
+
+render(){
+  return(
+
+    <SafeAreaView>
+      <View style={styles.ind}>
+        <ActivityIndicator animating={this.state.animating} size="large" color="#ff0000"/>
+        <ActivityIndicator animating={this.state.animating} size="small" color="#ff0000"/>
+      </View>
+    </SafeAreaView>
+  );
+}
+}
+const styles =StyleSheet.create({
+
+  ind:{
+    padding:10,
+    flex:1,
+    
+    flexDirection:"row",
+    marginTop:50,
+    alignContent:"center",
+    justifyContent:"space-around"    
+  }
+})

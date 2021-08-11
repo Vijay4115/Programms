@@ -1,0 +1,78 @@
+import React, { Component } from "react"
+import {SafeAreaView,View,StyleSheet,Alert,Button} from "react-native"
+
+export default class Alertdemo extends Component
+{
+
+  _onsimple(){
+    Alert.alert('Simple alert');
+  }
+  _ontwopress(){
+    
+      Alert.alert('Two Choice alert'," Do You Want To cancel Me?",
+     [ 
+       {
+        text: 'Yes' , onPress : () => console.log('yes pressed')
+      },
+      {
+        text:'No' , onPress : () => console.log('No pressed'),
+      },
+    ],
+{cancelable:false}
+  
+    );
+  };
+  _onthreepress(){
+
+    Alert.alert("Three Menu Choice","You Need to select One",
+    [
+      {
+        text:'Maybe', onPress:() => console.log("Maybe Selected")
+      },
+      {
+        text:'Yes', onPress:() => console.log("Yes Selected")
+      },
+      {
+        text:'No', onPress:() => console.log("No Selected")
+      },
+    ],
+    {cancelable:true}
+    )
+  }
+  render(){
+
+    return(
+      <SafeAreaView style={{flex:1}}>
+        <View style={styles.button}>
+          <Button
+            title="SIMPLE ALERT"
+            onPress={this._onsimple}>
+          </Button>
+        </View > 
+        <View style={styles.button}>
+          <Button
+          title="Two Option Alert"
+          onPress={this._ontwopress}></Button>
+        </View>
+        <View style={styles.button}>
+          <Button
+          title="Three Option Alert"
+          onPress={this._onthreepress}></Button>
+        </View>
+      </SafeAreaView>
+
+      
+    );
+  }
+}
+const styles=StyleSheet.create({
+  button:
+  {
+    marginTop:20,
+    backgroundColor:'skyblue',
+    padding:10,
+    color:'steelblue',
+    alignSelf:'center',
+    marginBottom:20
+  }
+})

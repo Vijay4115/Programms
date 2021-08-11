@@ -1,0 +1,54 @@
+import React, { Component, useEffect, useState } from 'react'
+import { SafeAreaView,View,Text,Button } from 'react-native'
+
+
+const FunctionApp=()=>
+{
+ const [count,setCount]=useState(0);
+  const _increase=()=>{
+    setCount(count+1)
+ 
+}
+  return(
+    <SafeAreaView>
+      <View style={{alignItems:'center'}}>
+        <Text> Click here to Increase Count..</Text>
+        <Button title="Press Me" onPress={_increase} >Button</Button>
+
+      </View>
+      <View style={{alignItems:'center'}}>
+        <Text >Total Count is : {count}</Text>
+      </View>
+    </SafeAreaView>
+  );
+}
+//export default FunctionApp;
+
+class App extends Component{
+  constructor(){
+    super();
+    this.state={
+      count:0
+    }
+    this.increase=this.increase.bind(this);
+
+  }
+  increase(){
+    this.setState({count:this.state.count+1});
+  }
+
+  render(){
+   
+    return(
+      <SafeAreaView>
+        <View >
+           <Button  title='Press me' onPress={this.increase}/>
+        </View>
+        <View>
+          <Text>Total Count : {this.state.count}</Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
+}
+export default App;

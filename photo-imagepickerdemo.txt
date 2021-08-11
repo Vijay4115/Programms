@@ -1,0 +1,87 @@
+// App.js
+
+import React, { useState } from 'react';
+import { StyleSheet,Image, Text, View, TouchableOpacity,Linking } from 'react-native';
+import ImagePicker from 'react-native-image-crop-picker';
+
+const App = () => {
+//open photo
+const openPhotos = () =>{
+  switch(Platform.OS){
+    case "ios":
+      Linking.openURL("photos-redirect://");
+    break;
+    case "android":
+      Linking.openURL("content://media/internal/images/media");
+    break;
+    default:
+      console.log("Could not open gallery app");
+   }
+  }
+const takePhotofromCamera =()=>{
+  ImagePicker.openCamera({
+    width: 300,
+    height: 400,
+    cropping: true,
+  }).then(image => {
+    console.log(image);
+  });
+}
+const choosefromPhotos =()=>{
+  ImagePicker.openPicker({
+    width: 300,
+    height: 400,
+    cropping: true
+  }).then(image => {
+    
+    setImage(image.path)
+  });
+}
+   const [images,setImage]=useState('/Users/mac/Documents/projects/photoaccessDemo/download.jpeg');
+
+    return (
+      <View style={styles.container}>
+        <View style={styles.container}>
+                   <TouchableOpacity onPress={openPhotos} style={styles.button}  >
+              <Text style={styles.buttonText}>Open Photos App</Text>
+          </TouchableOpacity>       
+          <TouchableOpacity onPress={takePhotofromCamera} style={styles.button}  >
+              <Text style={styles.buttonText}>Take Photo From Camera</Text>
+          </TouchableOpacity>       
+          <TouchableOpacity onPress={choosefromPhotos} style={styles.button}  >
+              <Text style={styles.buttonText}>Choose From Photos App</Text>
+          </TouchableOpacity>     
+          <Text>{'\n'}</Text>  
+          <Text>{'\n'}</Text>  
+          <Text>{'\n'}</Text>  
+
+          
+    <Image source={{uri:images}} style={{height:150,width:150}}/>
+        </View>
+      </View>
+    );
+  }
+export default App;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff'
+  },
+  button: {
+    width: 250,
+    height: 60,
+    backgroundColor: '#3840ff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 4,
+    marginBottom:12    
+  },
+  buttonText: {
+    textAlign: 'center',
+    fontSize: 15,
+    color: '#fff'
+  }
+});

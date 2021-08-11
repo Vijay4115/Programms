@@ -1,0 +1,69 @@
+import React, { Component } from 'react'
+import { SafeAreaView,View,Text } from 'react-native'
+import firebase from 'firebase'
+
+
+export default class  App extends Component{
+
+  UNSAFE_componentWillMount(){
+    var firebaseConfig = {
+      apiKey: "AIzaSyAMlmu-c4gyomJE2twSmJVKuTutLnI4sJY",
+      authDomain: "crud-8d78e.firebaseapp.com",
+      databaseURL: "https://crud-8d78e-default-rtdb.firebaseio.com",
+      projectId: "crud-8d78e",
+      storageBucket: "crud-8d78e.appspot.com",
+      messagingSenderId: "271910775015",
+      appId: "1:271910775015:web:91147a98457b2d5d415a42",
+      measurementId: "G-RMWYPXW8MT"
+    };
+    // Initialize Firebase
+    if(!firebase.apps.length)
+    {
+    firebase.initializeApp(firebaseConfig);
+     }
+
+  //to Read Data
+
+     var myusers= firebase.database().ref("users");
+     myusers.on("value",datasnap=>{
+       console.log(datasnap.val())
+     })
+
+     var mydept = firebase.database().ref("dept");
+     mydept.on("value",datasnap=>{
+       console.log(datasnap.val())
+     })
+
+    //To Write Data
+
+   let dept = firebase.database().ref("dept")
+  
+
+   dept.set({
+     deptid:1,
+     deptname:'MCA'
+   }).then(console.log("MCA Entered"))
+  
+
+    //To Update Data
+    firebase.database().ref("users").update({
+      name:"Vijay"
+    }).then(console.log("Updated"))
+
+    //to delete Data
+    firebase.database().ref("users").remove().then(console.log("users Deleted"))
+     
+  }
+render(){
+
+  return(
+    
+    <SafeAreaView>
+      <View>
+        <Text>Hello</Text>
+      </View>
+    </SafeAreaView>
+
+    )
+    }
+}

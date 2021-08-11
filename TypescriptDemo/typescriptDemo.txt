@@ -1,0 +1,52 @@
+import React, { useState } from 'react';
+import { SafeAreaView, Button, StyleSheet, Text, View } from 'react-native';
+
+export type Props={
+  name:string;
+  baselevel?:number;
+}
+
+const Hello : React.FC<Props>=({
+  name='Vijay',
+  baselevel=0
+})=>{
+  
+  const[level,setLevel]=useState(baselevel);
+
+  const onIncrement=()=>
+      setLevel(level+1)
+  
+  const onDecrement=()=>
+    setLevel(level >0 ? level-1 :0);
+
+  
+  const getMarks = (numChars : number)=>
+  numChars > 0 ? Array(numChars+1).join('!'):''
+
+  return(
+    <SafeAreaView style={{flex:1,flexDirection:'column'}}>
+      <View style={styles.container}>
+        <Text style={styles.textbody}>Hello {name} {getMarks(level)}</Text>
+      </View>
+      <View style={styles.container}>
+        <Button title=" Increase enthusiasm" color="blue" accessibilityLabel="Increment" onPress={onIncrement}/>
+        <Button title=" Decrease enthusiasm" color="blue" accessibilityLabel="Decrement" onPress={onDecrement}/>
+      </View>
+    </SafeAreaView>
+  );
+}
+export default Hello;
+const styles=StyleSheet.create({
+  container:{
+    alignItems:'center',
+    marginTop:150,
+  },
+  textbody:{
+    fontSize:22,
+    fontWeight:'bold',
+    paddingLeft:10,
+    color:'steelblue',
+  },
+
+
+})

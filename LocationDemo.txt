@@ -1,0 +1,98 @@
+import React, { useEffect, useState } from 'react'
+import geolocation from '@react-native-community/geolocation'
+import { SafeAreaView,View,Text,StyleSheet } from 'react-native'
+import MapView,{Callout, Marker, PROVIDER_GOOGLE}  from 'react-native-maps'
+
+
+const App=()=>{
+
+  const[olat,setOlat]=useState(0)
+  const[olong,setOlong]=useState(0)
+
+useEffect(()=>{
+ 
+  this.watchId=geolocation.getCurrentPosition(
+    (data)=>{
+    setOlat(data.coords.latitude),
+    setOlong(data.coords.longitude)
+  },
+  (error)=>{
+    console.log(error)
+  },
+{enableHighAccuracy:false , timeout: 15000, maximumAge :1000, distanceFilter :1}
+ )
+ 
+})
+ 
+   
+ 
+
+  return(
+    <SafeAreaView >
+      <View style={styles.container}>
+        
+      <MapView
+       provider={PROVIDER_GOOGLE} 
+       style={styles.map}
+       region={{
+         latitude: olat,
+         longitude: olong,
+         latitudeDelta: 0.015,
+         longitudeDelta: 0.0121,
+       }}
+     >
+    <Marker 
+    coordinate={{
+      latitude: olat,
+      longitude:olong
+
+    }}
+  //image={require('/Users/mac/Documents/projects/LocationDemo/678111.png')}
+  pinColor="blue"
+    title="Marker"
+    description="Map Access"
+    />   
+   
+     </MapView>
+     {(olat && olong) ?
+        <Text style={styles.textedit}>latitude : {olat} , longitude :{olong}</Text>
+:       <Text style={styles.textedit}>Don't Know Where You are..!!!</Text>
+      }
+      </View>
+    </SafeAreaView>
+  );
+}
+export default App;
+
+const styles=StyleSheet.create({
+  container: {
+    ...StyleSheet.absoluteFillObject,
+    height: 800,
+    width: 400,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  //CallOut Bubble
+  bubble:{
+flexDirection:'row',
+alignSelf:'flex-start',
+backgroundColor:'#fff',
+borderRadius:6,
+borderColor:'#ccc',
+borderWidth:0.5,
+padding:15,
+width:150,
+  },
+  name:{
+    fontSize:16,
+    marginBottom:5,
+  },
+  textedit:{
+    fontSize:20,
+    fontWeight:'bold',
+    color:'blue',
+  },
+  map:{
+    ...StyleSheet.absoluteFillObject,
+  }
+})

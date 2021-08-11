@@ -1,0 +1,78 @@
+import React from 'react'
+import { SafeAreaView,View,Text,TextInput } from 'react-native'
+
+
+const App=()=>{
+
+const animals = ["Dog ", "Cow","Cat","Horse"]
+const fruits = [
+  {id:1 ,name:"Apple"},
+  {id:2 ,name:"Mango"},
+  {id:3 ,name:"Banana"},
+  {id:4 ,name:"Grapes"},
+];
+ getforof=(fruit)=>{
+  let content =[]
+   for (const i of fruit) {
+      
+      content.push(i.name+"\n")
+   }
+   return content;
+ }
+getforin=(animal)=>{
+let content=[]
+for (const key in animal) {
+    const item=animal[key]
+      content.push(key+" "+item+"\n")
+  }
+  return content;
+}
+standardfor=(animal)=>{
+  let content=[]
+  for (let i = 0; i < animal.length; i++) {
+    const element = animal[i];
+    content.push(i+ " "+ element+" \n")
+    
+  }
+  return content;
+}
+
+
+  return(
+        <SafeAreaView style={{flex:1}}>
+    <View style={{alignItems:'center',marginTop:100}} >
+        <Text style={{color:'blue',fontWeight:'bold'}}> Using Map</Text>
+        {
+          animals.map(animal=>(
+            <Text >{animal}</Text>
+          ))
+        }
+      </View>
+      <Text>{'\n'}</Text>
+      <Text style={{color:'blue',fontWeight:'bold',alignSelf:'center'}}>Using Key in Map</Text>
+      <View style={{alignItems:'center'}}>
+        {
+          fruits.map(item=>(
+            <Text key={item.id}>{item.name}</Text>
+          ))
+        }
+      </View>
+<Text>{'\n'}</Text>
+      <View style={{alignItems:'center'}}>
+        <Text style={{color:'blue',fontWeight:'bold'}}> For of</Text>
+          <Text>{getforof(fruits)}</Text>
+          </View>
+          <Text>{'\n'}</Text>
+      <View style={{alignItems:'center'}}>
+        <Text style={{color:'blue',fontWeight:'bold'}}> For In</Text>
+          <Text>{getforin(animals)}</Text>
+          </View>
+          <Text>{'\n'}</Text>
+      <View style={{alignItems:'center'}}>
+        <Text style={{color:'blue',fontWeight:'bold'}}> Standard For</Text>
+          <Text>{standardfor(animals)}</Text>
+          </View>
+    </SafeAreaView>
+  );
+}
+export default App;

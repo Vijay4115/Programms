@@ -1,0 +1,42 @@
+import React from 'react'
+import { Component } from 'react'
+import {SafeAreaView,View,Text} from 'react-native'
+import LocalizedStrings from 'react-native-localization';
+
+// yarn add react-native-localization
+
+class App extends Component{
+
+  render(){
+
+    let strings = new LocalizedStrings({
+      "en-US":{
+        how:"How do you want your egg today?  en -US",
+        boiledEgg:"Boiled egg",
+        softBoiledEgg:"Soft-boiled egg",
+        choice:"How to choose the egg"
+      },
+      en:{
+        how:"How do you want your egg today? english",
+        boiledEgg:"Boiled egg",
+        softBoiledEgg:"Soft-boiled egg",
+        choice:"How to choose the egg"
+      },
+      it: {
+        how:"Come vuoi il tuo uovo oggi?",
+        boiledEgg:"Uovo sodo",
+        softBoiledEgg:"Uovo alla coque",
+        choice:"Come scegliere l'uovo"
+      }
+     });
+
+
+    return(
+        <SafeAreaView>
+          <Text> {strings.how}</Text>
+        </SafeAreaView>
+    )
+  }
+}
+
+export default App;

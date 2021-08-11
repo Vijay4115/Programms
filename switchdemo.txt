@@ -1,0 +1,26 @@
+
+import React, { Component } from "react"
+import {SafeAreaView,View,Text,Switch} from "react-native"
+
+export default class Switchdemo extends Component
+{
+
+  state={
+    switchvalue:false
+  };
+  render()
+  {
+    return(
+
+      <SafeAreaView>
+        <Switch
+        value={this.state.switchvalue}
+        onValueChange={(switchvalue)=>this.setState({switchvalue})}
+        />
+        <Text>{this.state.switchvalue?'ON':'OFF'}</Text>
+
+        
+      </SafeAreaView>
+    );
+  }
+}

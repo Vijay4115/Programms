@@ -1,0 +1,78 @@
+import React, { Component } from "react"
+import { SafeAreaView,StyleSheet, FlatList,Text,View } from "react-native"
+
+const dummyarray=[
+  {id:'1',value:'A'},
+  {id:'2',value:'B'},
+  {id:'3',value:'C'},
+  {id:'4',value:'D'},
+  {id:'5',value:'E'},
+  {id:'6',value:'F'},
+  {id:'7',value:'G'},
+  {id:'8',value:'H'},
+  {id:'9',value:'I'},
+  {id:'10',value:'J'},
+  
+];
+const itemView =({item})=>{
+return(
+
+  <SafeAreaView>
+    <View>
+      <Text style={styles.item} onPress={()=>getItem(item)}>
+        {item.value}
+      </Text>
+    </View>
+  </SafeAreaView>
+);
+}
+const itemSeperator=()=>{
+  return(
+    <View
+    style={{ height: 0.5, width: '100%', backgroundColor: '#C8C8C8' }}
+  />
+  );
+  }
+const getItem=(item)=>{
+  return(
+    alert("ID : "+ item.id + "  Text : "+ item.value)
+  );
+}
+
+
+export default class extends Component{
+
+ 
+
+  render(){
+ 
+    return(
+<SafeAreaView style={{ flex: 1 }}>
+  <View style={styles.container}>
+    <FlatList
+    data={dummyarray}
+    ItemSeparatorComponent={itemSeperator}
+    renderItem={itemView}
+    keyExtractor={(item,index)=>index.toString()}
+    />
+  </View>
+</SafeAreaView>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    flex: 1,
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 10,
+    marginTop: 30,
+  },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+  },
+});

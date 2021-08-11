@@ -1,0 +1,64 @@
+
+import React, { Component } from "react"
+import {SafeAreaView,StyleSheet, Text,View,TouchableHighlight,TouchableNativeFeedback,TouchableOpacity,TouchableWithoutFeedback} from "react-native"
+
+export default class Touchdemo extends Component
+{
+  _onpress(msg){
+    alert("You "+msg);
+  }
+  render(){
+
+    return(
+
+        <SafeAreaView >
+        <TouchableHighlight 
+        onPress={()=>this._onpress('Pressed Touchable Highlight')}
+        style={styles.button} >
+        <View>
+          <Text style={styles.textedit}>Touchable Highlight</Text>
+          </View>
+        </TouchableHighlight>
+
+        <TouchableOpacity style={styles.button}
+        onPress={()=>this._onpress('Pressed Touchable Opecity')}>
+          <View>
+          <Text style={styles.textedit}>Touchable Opecity</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableWithoutFeedback
+        onPress={()=>this._onpress('Pressed TouchableWithout Feedback')}>
+          <View style={styles.button}>
+            <Text style={styles.textedit}>Touchable Without Feedback</Text>
+          </View>
+        </TouchableWithoutFeedback>
+
+      <TouchableNativeFeedback 
+         onPress={()=>this._onpress('Pressed TouchableNative Feedback')}>
+      <View style={styles.button}>
+        <Text style={styles.textedit}>Touchable Native Feedback (Only Android)</Text>
+       </View>
+    </TouchableNativeFeedback>
+        </SafeAreaView>
+
+    );
+  }
+}
+const styles=StyleSheet.create({
+  button:{
+  alignSelf:'center',
+  marginTop:50,
+  backgroundColor:'#DDDDDD'  ,
+  width:300,
+  height:50,
+ 
+},
+textedit:{
+  marginTop:15,
+  alignSelf:'center',
+},
+
+
+
+});

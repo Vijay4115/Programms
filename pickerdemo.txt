@@ -1,0 +1,39 @@
+import React, { Component, useState } from "react"
+import {Text,View,SafeAreaView,Picker} from 'react-native';
+
+
+export default class Pickerdemo extends Component
+{
+  state={
+choosenindex:'1',
+choosenvalue:"java"
+
+  }
+  render(){
+    return(
+      <SafeAreaView>
+        <View>
+          <Picker
+            selectedValue={this.state.choosenvalue}
+            onValueChange={(itemvalue,itemindex)=>
+            this.setState({choosenindex:itemindex,choosenvalue:itemvalue})
+            }
+          >
+            <Picker.Item label="IOS" value="IOS"/>
+            <Picker.Item label="java" value="java"/>
+            <Picker.Item label="python" value="python"/>
+            <Picker.Item label="React" value="React"/>
+          </Picker>
+
+          <Text>Selected Value {this.state.choosenvalue}</Text>
+          <Text>Selected Index {this.state.choosenindex}</Text>
+        </View>
+      </SafeAreaView>
+    );
+
+  }
+
+}
+
+
+

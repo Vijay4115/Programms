@@ -1,0 +1,17 @@
+import 'react-native-gesture-handler';
+import React, { Component } from 'react'
+import { Text, View,SafeAreaView } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native';
+import MainStackNavigator from './Stack/MainStackNavigator';
+
+class App extends Component {
+  render() {
+    return (
+      <NavigationContainer>
+        <MainStackNavigator />
+      </NavigationContainer>
+      )
+  }
+}
+
+export default App;

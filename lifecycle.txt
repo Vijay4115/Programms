@@ -1,0 +1,67 @@
+import React, { Component } from "react"
+import {SafeAreaView,View,Text} from "react-native"
+
+class Custom extends Component{
+//Mounting Methods
+  render(){
+    return(
+      console.log("Render is Called"),
+      <View>
+        <Text>language is {this.props.name}</Text>
+      </View>
+    );
+  }
+  constructor(){
+    super();
+    console.log("Constructor called");
+
+  }
+  UNSAFE_componentWillMount(){
+    console.log("Component will Mount Called");
+  }
+  componentDidMount(){
+    console.log("ComponentDidMount Called");
+  }
+
+  //Updating Methods
+UNSAFE_componentWillReceiveProps(nextprop)  
+{
+  console.log("Component Will receive props called",nextprop);
+}
+shouldComponentUpdate(nextprop,nextstate){
+  console.log("Should Component Update");
+  return true;
+}
+UNSAFE_componentWillUpdate(nextprop,nextstate){
+  console.log("Component will update");
+
+}
+componentDidUpdate(prevprops,prevstate)
+{
+  console.log("Component Did Update called");
+
+}
+//Unmounting
+componentWillUnmount(){
+  console.log("Component will Unmount Called");
+}
+//Catching Errors
+componentDidCatch(error,info)
+{
+  console.log("Component Catch error Called");
+}
+
+}
+export default class Lifecycle extends Component
+{
+  render(){
+    return(
+      <SafeAreaView>
+      <View style={{alignItems:'center',marginTop:50}}>
+        <Custom name='c'/>
+      </View>
+      </SafeAreaView>
+    );
+
+  }
+}
